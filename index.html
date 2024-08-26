@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>郵便番号検索</title>
+    <style>
+        #view{
+            padding: 10px;
+            border: 4px solid #6f28bb;
+            width: 50%px;
+            background-color: aliceblue;
+            height:500px;
+            overflow: auto;
+        }
+        img{
+            width:50px;
+        }
+        #view>div{
+            border-bottom: 1px dotted #3838ab;
+            font-size:medium;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        h2{
+            font-size:x-large;
+            color:#f1071e;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>
+            郵便番号から住所に変換！ <span id="area"></span>
+        </h1>
+        <div id="view"></div>
+    </div>
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>        
+        const zipCode = "8150082"   //郵便番号
+
+        // https://zipcloud.ibsnet.co.jp/doc/api
+        const url = "http://zipcloud.ibsnet.co.jp/api/search?zipcode=" + zipCode
+        $.ajax({
+            url:url,
+            type:"get",
+            cache:false,
+            dataType:"json"
+        }).done(function(data){//成功したら実行
+            console.log(data);
+            let html = "";
+            results = data.results
+            for(let i=0; i<results.length; i++){
+                html += `
+                <div>
+                    住所: ${results[i].address1} ${results[i].address2} ${results[i].address3}
+                </div>
+                `; //「 Shift + @ 」バッククオート
+            }
+            $("#view").append(html)
+
+            $("#area").html("〒: "+zipCode)
+        });
+    </script>
+</body>
+</html>
