@@ -8,8 +8,7 @@
 
 ## ③DEMO
 
-- https://tamachan99.sakura.ne.jp/Kadai07/
-- 
+- https://tamachan99.sakura.ne.jp/Kadai07-1/
 
 https://github.com/user-attachments/assets/8b56483c-93eb-4875-bc3e-8cb6430db862
 
